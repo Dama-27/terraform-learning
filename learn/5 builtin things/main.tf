@@ -1,0 +1,103 @@
+# Built-in Functions in Terraform
+# (aka: small helper tools Terraform gives you so you don’t suffer)
+
+# Terraform comes with built-in functions that help you transform data.
+# You’ll use these when working with lists, maps, strings, etc.
+
+# Don’t worry about memorizing everything now — just understand the idea.
+
+# 1️ concat() → combine lists
+# Basically: join multiple lists together
+
+variable "list1" {
+  type    = list(string)
+  default = ["cat", "dog"]
+}
+
+variable "list2" {
+  type    = list(string)
+  default = ["lion", "tiger"]
+}
+
+output "combined_animals" {
+  value = concat(var.list1, var.list2)
+}
+
+
+# 2️ element() → pick one item from a list
+# Think: "give me item at this position"
+
+variable "animals" {
+  type    = list(string)
+  default = ["apple", "banana", "cherry"]
+}
+
+output "second_item" {
+  value = element(var.animals, 1) # banana (index starts at 0)
+}
+
+
+# 3️ length() → count items in a list
+# Simple: how many items exist?
+
+output "animal_count" {
+  value = length(var.animals)
+}
+
+
+# 4️ map() → create key-value pairs
+# Turn two lists into a dictionary (map)
+
+variable "keys" {
+  type    = list(string)
+  default = ["name", "role"]
+}
+
+variable "values" {
+  type    = list(string)
+  default = ["Alex", "DevOps"]
+}
+
+output "user_map" {
+  value = map(var.keys, var.values)
+}
+
+
+# 5️ lookup() → get value from a map
+# Like asking: "hey, what’s the value for this key?"
+
+variable "user_info" {
+  type = map(string)
+  default = {
+    name = "Alex"
+    age  = "25"
+  }
+}
+
+output "user_name" {
+  value = lookup(var.user_info, "name")
+}
+
+# 6️⃣ join() → turn list into string
+# Combine items into a single sentence
+
+variable "fruits" {
+  type    = list(string)
+  default = ["apple", "banana", "mango"]
+}
+
+output "fruit_string" {
+  value = join(", ", var.fruits)
+}
+
+
+# Summary
+# - concat → join lists
+# - element → pick item
+# - length → count items
+# - map → key-value structure
+# - lookup → fetch value from map
+# - join → make string from list
+
+# You don’t need to memorize this.
+# Just remember: Terraform has helpers for almost everything 
