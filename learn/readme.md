@@ -1,13 +1,49 @@
-how to run
-commands,
-<!-- terraform init is used to instanciate the project as well as if you add new resources you should init it again -->
-terraform init 
+## 🚀 How to Run
 
-<!-- terraform plan is used to check the changes that will be made to the infrastructure -->
+Here are the basic Terraform commands you’ll use:
+
+---
+
+### 🔧 Initialize the project
+
+```id="cmd1a"
+terraform init
+```
+
+> Initializes your Terraform project.
+> Run this when you first set things up **or** when you add new providers/modules.
+
+---
+
+### 🔍 Preview changes
+
+```id="cmd2b"
 terraform plan
+```
 
-<!-- terraform apply is used to apply the changes to the infrastructure -->
+> Shows what changes Terraform is going to make before actually applying them.
+
+---
+
+### ✅ Apply changes
+
+```id="cmd3c"
 terraform apply
+```
 
-<!-- terraform destroy is used to destroy the infrastructure -->
+> Applies the changes and creates/updates your infrastructure.
+
+---
+
+### 💣 Destroy everything
+
+```id="cmd4d"
 terraform destroy
+```
+
+> Deletes all resources managed by this project. Use with caution 😅
+
+---
+
+That’s the basic workflow:
+**init → plan → apply → (destroy if needed)**
