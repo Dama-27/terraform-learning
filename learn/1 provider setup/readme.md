@@ -1,137 +1,129 @@
 Alright… before you panic 😅
 
-Don’t try to memorize all of this at once. Just read through it, get the _idea_, and move on. In real projects, you’ll usually stick to just **one versioning style** anyway.
+Don’t try to memorize everything here.
+
+Seriously.
+
+Just read, understand the *idea*, and move on.
+In real projects, you’ll usually stick to ONE style anyway.
 
 ---
 
-## 🔢 HashiCorp Version Constraints (a.k.a. what does this weird syntax mean?)
+## HashiCorp Version Constraints
+(a.k.a. what is this weird syntax bro?)
 
-Let’s break it down:
+---
 
-### ✅ Way 1
+### Way 1
 
-```id="v1a9k2"
 version = "~> 3.0"
-```
 
 👉 Means: **3.0 or higher, but less than 4.0**
 
 Examples:
 
-- ✅ 3.0, 3.1, 3.9
-- ✅ 3.0.0, 3.5.2, 3.9.9
+- 3.0, 3.1, 3.9
 - ❌ 4.0.0
 
-💡 Translation: _Stay within the same major version, but allow minor + patch updates._
+In simple terms: Stay in the same major version, allow updates.
 
 ---
 
-### ✅ Way 2
+### Way 2
 
-```id="x8p2lm"
 version = "~> 3.2"
-```
 
 👉 Means: **>= 3.2.0 and < 3.3.0**
 
-💡 Translation: _Lock the minor version, only allow patch updates._
+💡 Only patch updates allowed (safe mode 😄)
 
 ---
 
-### ✅ Way 3
+### Way 3
 
-```id="k2m9qp"
 version = ">= 2.0, < 3.0"
-```
 
-👉 Means: **Anything from 2.0.0 up to (but NOT including) 3.0.0**
+👉 Means: **2.x versions only**
 
-Examples:
+Same as:
 
-- ✅ 2.0, 2.5, 2.9
-- ❌ 3.0
-
-💡 Basically the same as:
-
-```id="b7zn3d"
 ~> 2.0
-```
 
 ---
 
-### ✅ Way 4
+### Way 4
 
-```id="p0q8we"
 version = "= 3.1.0"
-```
 
-👉 Means: **Exactly this version. No surprises. No upgrades. No fun.**
+👉 Exact version only.
+
+No upgrades. No surprises. No drama.
 
 ---
 
-### ⚠️ Way 5 (be careful)
+### Way 5 (careful bro)
 
-```id="u2l9as"
 version = ">= 3.0"
-```
 
-👉 Means: **Anything 3.0 or higher**
+Terraform can upgrade to ANY future version. You're a dead man
 
-💀 This is risky because Terraform might pull a much newer version than you expect.
+Good luck debugging that 😂
 
 ---
 
-### ⚠️ Way 6 (also be careful)
+### Way 6
 
-```id="n4c7ty"
 version = "< 3.0"
-```
 
-👉 Means: **Anything below 3.0**
-
-😬 Also risky and usually unnecessary.
+😬 Also risky. Avoid unless you know why you're doing it.
 
 ---
 
-👉 **Recommendation:**
-Try to avoid Way 5 and Way 6 unless you _really_ know what you’re doing.
+## Recommendation
+
+Use:
+
+- ~> 3.0 (safe + flexible)
+- ~> 3.2 (more strict)
+
+Avoid open-ended versions unless you're very confident.
 
 ---
 
-## 🤔 “Wait… why did you name it `providers.tf`?”
+##  “Why providers.tf?”
 
-Short answer: I didn’t _have_ to.
+Terraform doesn’t care about file names.
 
-Terraform doesn’t care about file names (again 😄). You could name it:
+You can name it:
 
-- `abcd.tf`
-- `whatever.tf`
-- `this_better_work.tf`
+- abcd.tf
+- random.tf
+- please_work.tf 😂
 
-As long as it ends with `.tf`, Terraform will read it.
-
----
-
-## 🧠 But in the real world (a.k.a. best practices)
-
-Humans _do_ care about file names.
-
-So we use meaningful ones like:
-
-- `providers.tf`
-- `main.tf`
-- `variables.tf`
-- `outputs.tf`
-
-And for larger projects, you might even split by resource:
-
-- `iam.tf`
-- `vpc.tf`
-- `ec2.tf`
-
-👉 Makes your project cleaner, easier to read, and way less painful to debug later.
+But humans DO care.
 
 ---
 
-And yes… now you’re a little confused. That’s normal 😄
-It’ll click once you actually start using it.
+## Real-world practice
+
+Use clean names:
+
+- providers.tf
+- main.tf
+- variables.tf
+- outputs.tf
+
+And for bigger projects:
+
+- vpc.tf
+- ec2.tf
+- iam.tf
+
+Future you will say thank you 🙏
+
+---
+
+And yeah… if you're confused now,
+don’t worry.
+
+That means you're learning, just like my younger self
